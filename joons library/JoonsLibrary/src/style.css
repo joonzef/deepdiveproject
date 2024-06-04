@@ -30,8 +30,8 @@
         rgba(219, 81, 81, 0.9),
         rgb(255, 57, 57),
         rgb(250, 80, 80),
-        rgb(245, 88, 88),
-        rgb(255, 152, 152)
+        rgb(255, 75, 75),
+        rgb(255, 81, 81)
       );
     background-attachment: var(--attachment);
     min-height: 100vh;
