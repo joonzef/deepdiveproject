@@ -5,27 +5,38 @@
 
 <script>
 export default {
-  methods: {
-    async fetchTwitch() {
-      try {
-        console.log(import.meta.env.VITE_FORTNITE);
-        const response = await fetch(import.meta.env.VITE_TWITCH_LINK, {
-          method: 'POST'
-        });
-
-        if (!response.ok) {
-          throw new Error(`HTTP error! status: ${response.status}`);
-        }
-
-        const data = await response.json();
-        console.log(data);
-      } catch (error) {
-        console.error('An error occurred while fetching the Twitch token:', error);
-      }
+  name: 'twitchApi',
+  data: function () {
+    return {
+      gamesList: []
     }
   },
-  created() {
-    this.fetchTwitch();
+  methods: {
+    fetchGames: function () {
+      let fetchLink = 'https://api.twitch.tv/helix/games/top?first=10'
+
+      fetch(fetchUrl, {
+        method: `get`,
+        headers: new Headers({
+          'authorization': 'bearer' + import.meta.env.VITE_TWITCH_OAUTH,
+          'Client-Id': import.meta.env.VITE_TWITCH_CLIENT_ID
+        })
+      })
+      .then(
+        function (response) {
+          return response.json();
+        }
+      )
+      .then(
+        data => {
+          console.log(data)
+        }
+      );
+      },
+      mounted () {
+        console.log('Component mounted.');
+        this.fetchGames();
+      }
   }
 }
 </script>

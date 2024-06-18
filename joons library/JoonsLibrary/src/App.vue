@@ -5,6 +5,6 @@ import Api from './components/Api.vue'
 
 <template>
   <Navbar />
-  <api />
+  <Api/>
 </template>
 
